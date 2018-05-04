@@ -263,5 +263,18 @@ module.exports.sayGoodbye = function(req, res) {
 
 
 module.exports.welcome = function(req, res) {
-    res.render('./pages/welcome_page', { link: "/"});
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                users_db.find({"_id":sessions_found[0].userID}, function(err, users_found) {
+                    workspace_users_db.find({"userID":users_found[0]._id}, function(err, workspaces_found) {
+                        res.render('./pages/welcome_page', {firstname:users_found[0].firstname, workspaces:workspaces_found});
+                    });
+                });
+            }
+        });
+    } else {
+        res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
+            signup_link: "/signup", newroom_link: "/newroom"});
+    }
 };
