@@ -270,7 +270,7 @@ module.exports.welcome = function(req, res) {
                     workspace_users_db.find({"userID":users_found[0]._id}, function(err, workspaces_found) {
                         res.render('./pages/welcome_page', {firstname:users_found[0].firstname, workspaces:workspaces_found});
                     });
-                });
+                }); 
             }
         });
     } else {
