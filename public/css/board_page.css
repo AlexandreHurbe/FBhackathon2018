@@ -70,6 +70,7 @@ html, body {
 
 #header{
     color: ghostwhite;
+    display: flex;
 }
 
 #openNav:hover{
@@ -81,9 +82,9 @@ html, body {
     margin-left: 10px;
     font-weight: 400;
     font-size: 3em;
-    text-align: left;
     color: ghostwhite;
-    margin-top: -5px;
+    display: inline;
+
 }
 
 
@@ -451,5 +452,3 @@ html, body {
     margin-top: -10px;
     margin-left: 5px;
 }
-
-
