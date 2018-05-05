@@ -22,7 +22,7 @@ module.exports.login = function(req, res){
 };
 
 module.exports.admin_page = function(req, res) {
-    var is_admin = "true";
+    var is_admin = "false";
     if (req.cookies.sessionID != undefined) {
         sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
             if (sessions_found.length) {
@@ -295,7 +295,12 @@ module.exports.welcome = function(req, res) {
             if (sessions_found.length) {
                 users_db.find({"_id":sessions_found[0].userID}, function(err, users_found) {
                     workspace_users_db.find({"userID":users_found[0]._id}, function(err, workspaces_found) {
-                        res.render('./pages/welcome_page', {firstname:users_found[0].firstname, workspaces:workspaces_found});
+                        if (workspaces_found.length > 1){
+                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toUpperCase(), workspaces:workspaces_found});
+                        }
+                        else{
+                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toLowerCase(), workspaces:workspaces_found});
+                        }
                     });
                 });
             }
