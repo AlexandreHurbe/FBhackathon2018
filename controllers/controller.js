@@ -21,6 +21,32 @@ module.exports.login = function(req, res){
     }
 };
 
+module.exports.admin_page = function(req, res) {
+    var is_admin = "true";
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
+                    if(workspaceID_found[0].user_role == "admin"){
+                        is_admin = "true";
+                    }
+                    workspace_db.find({"_id":workspaceID_found[0].workspaceID}, function(err, workspace_found) {
+                        res.render('./pages/admin_page', { my_account: "/my_account",
+                            log_out_link: "/",
+                            workspace_name: workspace_found[0].workspace_name.toUpperCase(),
+                            isAdmin:is_admin});
+                    });
+                });
+            } else {
+                res.redirect('/');
+            }
+        });
+    } else {
+        res.redirect('/');
+    }
+};
+
+
 module.exports.account_page = function(req, res) {
     var is_admin = "true";
     if (req.cookies.sessionID != undefined) {
