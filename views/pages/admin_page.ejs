@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Account</title>
+    <% include ../partials/accountpage %>
+</head>
+<body>
+
+<!-- Sidebar -->
+<% include ../partials/sidebar %>
+
+
+<div class = "page" id = "main">
+    <div class = "header">
+        <div id = "account_name">
+            <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+            My Account
+        </div>
+    </div>
+
+    <div class = "wrapper">
+        <div class = "account_photo">
+            <img id = "profile_picture" src = "/img/profileImg.png">
+        </div>
+        <div class = "view_posts">
+            Total Likes:
+        </div>
+        <div class = "view_events">
+            Total Posts:
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
