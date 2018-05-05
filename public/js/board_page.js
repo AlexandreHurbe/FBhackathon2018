@@ -16,15 +16,11 @@ function exit_note_submit() {
     document.getElementById("note_submit_overlay").style.display = "none";
 }
 
-function create_event() {
-    var event_name = document.getElementById("event_name_box");
-    var location_box = document.getElementById("location_box");
-    var date_box = document.getElementById("date_box");
-    var dt=Date.parse(date_box.value);
+var event_count = 0;
+function generate_event(event_content) {
+    event_count++;
+    var content = event_content;
 
-    console.log(date_box.value);
-    var time_from_box = document.getElementById("time_from_box");
-    var time_to_box = document.getElementById("time_to_box");
 
     var event_card = document.createElement("DIV");
 
@@ -32,28 +28,28 @@ function create_event() {
     event_name_h1.className = "event_title";
     var name = document.createTextNode("Event: ");
     event_name_h1.appendChild(name);
-    event_name_h1.appendChild(document.createTextNode(event_name.value));
+    event_name_h1.appendChild(document.createTextNode(content.eventName));
     event_card.appendChild(event_name_h1);
 
     var location_h2 = document.createElement("H2");
     location_h2.className = "event_location";
     var location = document.createTextNode("Location: ");
     location_h2.appendChild(location);
-    location_h2.appendChild(document.createTextNode(location_box.value));
+    location_h2.appendChild(document.createTextNode(content.location));
     event_card.appendChild(location_h2);
 
     var date_h2 = document.createElement("H2");
     date_h2.className = "event_date";
     var date = document.createTextNode("Date: ");
     date_h2.appendChild(date);
-    date_h2.appendChild(document.createTextNode(date_box.value));
+    date_h2.appendChild(document.createTextNode(content.date));
     event_card.appendChild(date_h2);
 
     var time_h2 = document.createElement("H2");
     time_h2.className = "event_time";
     var time = document.createTextNode("Time: ");
     time_h2.appendChild(time);
-    var time_string = time_from_box.value + "-" + time_to_box.value;
+    var time_string = content.startTime + "-" + content.endTime;
     time_h2.appendChild(document.createTextNode(time_string));
     event_card.appendChild(time_h2);
 
@@ -62,13 +58,59 @@ function create_event() {
     event_card.className = "event_card";
     document.getElementById("events").appendChild(event_card);
 
-    event_name.value = "";
-    location_box.value = "";
-    date_box.value = "";
-    time_from_box.value = "";
-    time_to_box.value = "";
+
+
+}
+
+function create_event() {
+    var data_pairs = [];
+    var url_encoded_data = "";
+
+    data_pairs.push(encodeURIComponent("eventName") + '=' +
+                        encodeURIComponent(document.getElementById("event_name_box").value));
+
+    data_pairs.push(encodeURIComponent("location") + '=' +
+                        encodeURIComponent(document.getElementById("location_box").value));
+
+    data_pairs.push(encodeURIComponent("date") + '=' +
+                        encodeURIComponent(document.getElementById("date_box").value));
+
+    data_pairs.push(encodeURIComponent("startTime") + '=' +
+                        encodeURIComponent(document.getElementById("time_from_box").value));
+
+    data_pairs.push(encodeURIComponent("endTime") + '=' +
+                        encodeURIComponent(document.getElementById("time_to_box").value));
+
+
+    url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
+
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('POST', '/submit_event');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send(url_encoded_data);
+
 
     exit_event_submit();
+
+}
+
+function get_events() {
+    var XHR = new XMLHttpRequest();
+
+    XHR.open('GET', '/get_events');
+    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XHR.send();
+
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState == XMLHttpRequest.DONE) {
+            var events = JSON.parse(XHR.responseText);
+            console.log(events);
+            for (var i in events) {
+                generate_event(events[i]);
+            }
+        }
+    }
 }
 
 function get_postits() {
@@ -138,6 +180,7 @@ function create_postit() {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
+
     exit_note_submit();
 }
 
@@ -158,7 +201,9 @@ function w3_close() {
     document.getElementById("openNav").style.display = "inline-block";
 }
 
-get_postits();
+
+get_events();
+
 window.setInterval(function(){
     get_postits();
 }, 1000);
