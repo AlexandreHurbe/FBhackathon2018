@@ -17,13 +17,13 @@ function exit_note_submit() {
 }
 
 var event_count = 0;
-function generate_event(event_content) {
+function generate_event(event_content, event_id) {
     event_count++;
     var content = event_content;
 
 
     var event_card = document.createElement("DIV");
-
+    event_card.id = event_id;
     var event_name_h1 = document.createElement("H1");
     event_name_h1.className = "event_title";
     var name = document.createTextNode("Event: ");
@@ -107,7 +107,8 @@ function get_events() {
             var events = JSON.parse(XHR.responseText);
             console.log(events);
             for (var i in events) {
-                generate_event(events[i]);
+                if (!document.getElementById(events[i]._id))
+                generate_event(events[i], events[i]._id);
             }
         }
     }
@@ -134,7 +135,6 @@ function get_postits() {
                     console.log("this should shut up");
                     console.log(posts_on_page);
                     console.log(posts_on_page.indexOf(post_its[i]));
-                    debugger;
                     var result = generate_postit(post_its[i].postItContent, post_its[i]._id);
                     if (!result) {
 
@@ -280,8 +280,10 @@ function w3_close() {
 
 
 get_events();
+get_postits();
 
 window.setInterval(function(){
+    get_events();
     get_postits();
 }, 1000);
 

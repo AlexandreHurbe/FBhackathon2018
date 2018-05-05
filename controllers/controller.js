@@ -117,6 +117,14 @@ module.exports.get_post_its = function(req, res) {
     });
 };
 
+module.exports.get_workspace_name = function(req, res) {
+    console.log(req.params);
+    workspace_db.find({"_id":req.params.workspaceID}, function(err, workspace_found) {
+        console.log(workspace_found);
+        res.send(workspace_found[0].workspace_name);
+    });
+}
+
 module.exports.submit_post_it = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
@@ -127,10 +135,18 @@ module.exports.submit_post_it = function(req, res) {
 
     sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
         if (sessions_found.length) {
+            var content = req.body.post_it_content;
+
+            console.log(content);
+
+            if (content.includes("fuck")) {
+                console.log("profane");
+                content = "Hope you're all having a lovely day!";
+            }
                 var post_it = post_its_db({
                     "workspaceID":req.cookies.workspaceID,
                     "userID":sessions_found[0].userID,
-                    "postItContent":req.body.post_it_content,
+                    "postItContent":content,
                     "anonymous":req.body.anonymous
                 });
 
