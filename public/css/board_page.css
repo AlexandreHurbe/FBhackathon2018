@@ -170,7 +170,19 @@ html, body {
     transform: scale(1.2);
     opacity: 2;
     z-index: 50;
+
 }
+
+div.posted_sticky:hover input{
+    display: block;
+}
+
+div.posted_sticky input.hide_posts_button{
+    top: 0;
+    left: 80%;
+}
+
+
 
 @keyframes create_new{
     0% {
@@ -328,10 +340,11 @@ html, body {
     margin: 10px 10px 10px 10px;
     min-height: 230px;
     min-width: 230px;
-    max-height: 230px;
+    max-height: 220px;
     max-width: 230px;
     display: inline-block;
     text-align: center;
+    font-size: 25px;
 }
 
 #post_button {

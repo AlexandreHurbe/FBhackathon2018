@@ -62,67 +62,15 @@
                <img class="login_icons" src = "/img/pinDrop.png"><input class ="text_field" id = "location_box" type="text" placeholder = "Location"><br>
                <img class="login_icons" src = "/img/eventDate.svg"><input class ="text_field" id = "date_box" type="date" placeholder = "Date"><br>
                <img class="login_icons" src = "/img/startHour.png"><input class ="text_field" id = "time_from_box" type="time" placeholder = "Event Start Time"><br>
-               <img class="login_icons" src = "/img/endHour.png"><input class ="text_field" id = "time_to_box" type="time" placeholder = "Event End Time"></div>
+               <img class="login_icons" src = "/img/endHour.png"><input class ="text_field" id = "time_to_box" type="time" placeholder = "Event End Time">
+           </div>
         <button type="button" id = "btn_login" onclick="create_event()">Submit</button>
     </div>
 </div>
 
-<!--
-<script>
 
-    let currentDroppable = null;
 
-    .sticky.onmousedown = function (event) {
 
-        let shiftX = event.clientX - .sticky.getBoundingClientRect().left;
-        let shiftY = event.clientY - .sticky.getBoundingClientRect().top;
-
-        .sticky.style.position = "absolute";
-        .sticky.style.zIndex = 1000;
-        document.body.append(.sticky);
-
-        moveAt(event.pageX, event.pageY);
-
-        function moveAt(pageX, pageY){
-            .sticky.style.left = pageX - shiftX / 2 + "px";
-            .sticky.style.top = pageY - shiftY / 2 + "px";
-        };
-
-        function onMouseMove(event){
-            moveAt(event.pageX, event.pageY);
-            .sticky.hidden = true;
-            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-            .sticky.hidden = false;
-
-            if(!elemBelow){
-                return;
-            }
-            let droppableBelow = elemBelow.closest(".droppable");
-
-            if(currentDroppable != droppableBelow){
-                if (currentDroppable){
-                    leaveDroppable(currentDroppable);
-                }
-                currentDroppable = droppableBelow;
-                if (currentDroppable){
-                    enterDroppable(currentDroppable);
-                }
-            }
-        }
-
-        document.addEventListener("mousemove", onMouseMove);
-
-        .sticky.onmouseup = function(){
-            document.removeEventListener("mousemove", onMouseMove);
-            .sticky.onmouseup = null;
-        };
-
-        .sticky.ondragstart = function(){
-            return false;
-        };
-    };
-</script>
--->
 
 
 </body>
