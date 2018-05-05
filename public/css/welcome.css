@@ -70,7 +70,7 @@ html, body{
 
 #company_name {
     font-family: "Oswald";
-    margin-left: 10px;
+    margin-left: 5%;
     font-weight: 400;
     font-size: 3em;
     text-align: left;
@@ -80,6 +80,7 @@ html, body{
 
 .motivational_message {
     font-family:  "Oswald";
+    margin-top: 8%;
     margin-left: 20%;
     margin-right: 20%;
     font-size: 400%;
@@ -91,7 +92,8 @@ html, body{
 #btn_login {
     font-size: 14px;
     font-family: "Roboto Condensed";
-
+    margin-top: 4%;
+    margin-left: 45%;
     width: 120px;
     height: 28px;
     line-height: 28px;

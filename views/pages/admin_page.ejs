@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Account</title>
-    <% include ../partials/accountpage %>
+    <% include ../partials/admin_page %>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <div class = "header">
         <div id = "account_name">
             <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
-            My Account
+            Admin for <%= workspace_name%>
         </div>
     </div>
 
@@ -24,10 +24,10 @@
             <img id = "profile_picture" src = "/img/profileImg.png">
         </div>
         <div class = "view_posts">
-            Total Likes:
+
         </div>
         <div class = "view_events">
-            Total Posts:
+
         </div>
 
     </div>
