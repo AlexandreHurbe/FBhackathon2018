@@ -40,6 +40,6 @@ router.get('/get_events', controller.get_events);
 
 router.get('/welcome', controller.welcome);
 
-router.get('/get_workspace_name/:workspaceID', controller.get_workspace_name);
+router.get('/get_workspaces/:workspaceID', controller.get_workspace_name);
 
 module.exports = router;

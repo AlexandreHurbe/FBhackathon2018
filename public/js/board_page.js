@@ -242,12 +242,19 @@ function generate_postit(postit_text, postit_id) {
     return true;
 }
 
+
+
+
+
+
+
 function create_postit() {
     var data_pairs = [];
     var url_encoded_data = "";
 
     data_pairs.push(encodeURIComponent("post_it_content") + '=' + encodeURIComponent(document.getElementById("sticky_submit_text").innerText));
     data_pairs.push(encodeURIComponent("anonymous") + '=' + encodeURIComponent("no"));
+    data_pairs.push(encodeURIComponent("hide") + '=' + encodeURIComponent("false"));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 
