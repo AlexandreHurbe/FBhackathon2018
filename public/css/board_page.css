@@ -152,7 +152,7 @@ html, body {
 .posted_sticky {
     background-color: whitesmoke;
     position: absolute;
-    animation: fadein 0.4s ease;
+    animation: create_new 0.7s ease;
     font-family: "Oswald";
     min-height: 250px;
     min-width: 250px;
@@ -171,14 +171,14 @@ html, body {
     z-index: 50;
 }
 
-@keyframes fadein {
+@keyframes create_new{
     0% {
         opacity: 0;
-        /*transform: scale(0);*/
+        transform: scale(0);
     }
     100% {
         opacity: 1;
-        /*transform: scale(1);*/
+        transform: scale(1);
     }
 }
 

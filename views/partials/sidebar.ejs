@@ -1,10 +1,23 @@
 <!-- Sidebar -->
-<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+<!-- <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
     <button class="w3-bar-item w3-button w3-large"
             onclick="w3_close()">Close &times;</button>
     <a href ="/board_page" class="w3-bar-item w3-button">Main Page</a>
     <a href="/my_account" class="w3-bar-item w3-button">My Account</a>
-    <a href="/admin_page" class="w3-bar-item w3-button" id=<%= isAdmin%> style="display: none">Admin</a>
+    <a href="/admin_page" class="w3-bar-item w3-button" id=<%=isAdmin%> style="display: none">Admin</a>
     <a href="#" class="w3-bar-item w3-button">Setting</a>
     <a href="/logout" class="w3-bar-item w3-button">Log Out</a>
-</div>
+</div> -->
+
+<nav clas="dp">
+  <button onclick="toggleDp()" class="dropbtn">
+    <img src="/img/lineIcon.png" alt="-" id="line-icon">
+  </button>
+  <div id="Dropdown" class="dropdown-content">
+    <a href="/board_page" class ="nav-li">Home</a>
+    <a href="/my_account" class ="nav-li">My Account</a>
+    <a href="#" id=<%= isAdmin%> style="display: none" class ="nav-li">Admin</a>
+    <a href="#" class ="nav-li">Setting</a>
+    <a href="/logout" class ="nav-li">Log out</a>
+  </div>
+</nav>

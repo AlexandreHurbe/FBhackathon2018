@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Happy Vibe</title>
 
 
     <% include ../partials/board_page %>
@@ -16,7 +16,6 @@
 <!-- Page Content -->
 <div class="page" id = "main">
     <div id="header">
-        <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
         <div >
             <h1 id = "company_name"><%= workspace_name%></h1>
         </div>
@@ -40,8 +39,10 @@
         <div id="eventHeader">
             UPCOMING EVENTS
         </div>
-
         <img  class="add_event_button" src="/img/addNoteButton.png" onclick="open_new_event_overlay()">
+        <div id="events">
+            <!-- This is the div where events are generated -->
+        </div>
     </div>
 </div>
 

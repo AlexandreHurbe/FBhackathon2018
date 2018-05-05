@@ -4,6 +4,7 @@ const workspace_db = mongoose.model('workspaces');
 const workspace_users_db = mongoose.model('workspace_users');
 const sessions_db = mongoose.model('sessions');
 const post_its_db = mongoose.model('post_its');
+const events_db = mongoose.model('events');
 
 module.exports.login = function(req, res){
     if (req.cookies.sessionID != undefined) {
@@ -22,7 +23,7 @@ module.exports.login = function(req, res){
 };
 
 module.exports.admin_page = function(req, res) {
-    var is_admin = "true";
+    var is_admin = "false";
     if (req.cookies.sessionID != undefined) {
         sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
             if (sessions_found.length) {
@@ -140,6 +141,45 @@ module.exports.submit_post_it = function(req, res) {
                         res.send("0Error: Database error");
                     }
                 });
+
+        } else {
+            res.send("0Error: Database error");
+        }
+    });
+};
+
+module.exports.get_events = function(req, res) {
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        if (sessions_found.length) {
+            events_db.find({"workspaceID":req.cookies.workspaceID}, function(err, events_found) {
+                res.send(events_found);
+            });
+        }
+    });
+};
+
+module.exports.submit_event = function(req, res) {
+
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+
+        if (sessions_found.length) {
+            var event =  events_db({
+                "workspaceID":req.cookies.workspaceID,
+                "userID":sessions_found[0].userID,
+                "eventName": req.body.eventName,
+                "location": req.body.location,
+                "date": req.body.date,
+                "startTime": req.body.startTime,
+                "endTime": req.body.endTime
+            });
+
+            event.save(function (err, new_event) {
+                if (!err) {
+                    res.send("1" + new_event._id);
+                } else {
+                    res.send("0Error: Database error");
+                }
+            });
 
         } else {
             res.send("0Error: Database error");
@@ -295,7 +335,12 @@ module.exports.welcome = function(req, res) {
             if (sessions_found.length) {
                 users_db.find({"_id":sessions_found[0].userID}, function(err, users_found) {
                     workspace_users_db.find({"userID":users_found[0]._id}, function(err, workspaces_found) {
-                        res.render('./pages/welcome_page', {firstname:users_found[0].firstname, workspaces:workspaces_found});
+                        if (workspaces_found.length > 1){
+                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toUpperCase(), workspaces:workspaces_found});
+                        }
+                        else{
+                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toLowerCase(), workspaces:workspaces_found});
+                        }
                     });
                 });
             }
