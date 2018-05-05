@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Oswald:400,500|Roboto+Condensed:300,400,700');
+
+
+        ejs{
+            height: 100%
+
+        }
+
+        body{
+            background: linear-gradient(rgba(27,17,11,1),rgba(114,70,48,0.3)), url("http://www.ectorhoogstad.com/sites/www.ectorhoogstad.com/files/project/beeld/cf036100_lighter.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+
+
+        h1{
+            font-family: "Oswald";
+            font-weight: 400;
+            font-size: 8em;
+            text-align: center;
+            color: white;
+        }
+
+        h2{
+            font-family: "Roboto Condensed";
+            font-weight: 300;
+            text-align: center;
+            color: white;
+        }
+        .wrapper {
+            font-family: "Roboto Condensed";
+            font-weight: 300;
+            text-align: center;
+            color: white;
+        }
+        .wrapper ul{display: inline-table;}
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Happy Vibes Co.</title>
+
+
+
+</head>
+<body>
+<h1><%=info.company%></h1>
+<h2><%=info.body%></h2>
+<div class="wrapper">
+    <ul>
+        <li><%=info.name1%></li>
+        <li><%=info.name2%></li>
+        <li><%=info.name3%></li>
+    </ul>
+</div>
+
+
+
+
+</body>
+</html>

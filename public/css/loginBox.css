@@ -1,0 +1,110 @@
+/*login box*/
+#login_frame {
+    width: 400px;
+    height: 70px;
+    padding: 13px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -30px;
+    margin-left: -220px;
+
+    background-color: rgba(218, 226, 237, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+#error_message {
+    font-family: "Roboto Condensed";
+    text-align: center;
+    color: red;
+    position: absolute;
+    margin-top: -55px;
+    margin-left: -205px;
+    top:50%;
+    left:50%;
+}
+
+
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+.login_icons{
+    float:left;
+    margin-top: -12px;
+    height: 20px;
+    width: 20px;
+}
+
+
+.text_field {
+    width: 360px;
+    height: 50px;
+    margin-top: -40px;
+    margin-left: 40px;
+    border-radius: 4px;
+    border: 0;
+    outline:none !important;
+    background: transparent !important;
+}
+
+#btn_login {
+    font-size: 14px;
+    font-family: "Roboto Condensed";
+
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: black;
+    outline:none !important;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    border: 0;
+    opacity: 0.6;
+}
+
+#signupline {
+    font-family: "Roboto Condensed";
+    font-size: 14px;
+    color: grey;
+    text-decoration: none;
+    top: 3px;
+    display: block;
+    margin-top: 100px;
+    border-bottom: 1px solid whitesmoke;
+}
+
+#signup {
+    font-family: "Roboto Condensed";
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+#signup:hover {
+    text-decoration: underline;
+}
+
+#forget_pwd {
+    display: block;
+    font-family: "Roboto Condensed";
+    font-size: 12px;
+    color: white;
+    margin-left: 8px;
+    text-decoration: none;
+    margin-top: 2px;
+}
+
+
+
+#forget_pwd:hover {
+    color: rgba(68, 79, 71, 0.6);
+    text-decoration: underline;
+}
+
+#login_control {
+    padding: 0 28px;
+}

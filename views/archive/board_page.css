@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500|Roboto+Condensed:300,400,700');
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(2deg, #355c7d, #6c5b7b, #c06c84, #3e5151, #2c3e50);
+    background-size: 1000% 1000%;
+    animation: fadein 2s, GradientChange 60s ;
+    -moz-animation: fadein 2s, GradientChange 60s; /* Firefox */
+    -webkit-animation: fadein 2s, GradientChange 60s; /* Safari and Chrome */
+    -o-animation: fadein 2s, GradientChange 60s; /* Opera */
+}
+
+@-webkit-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-moz-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-o-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+#header{
+    color: ghostwhite;
+}
+
+#openNav:hover{
+    color: rgba(68, 79, 71, 0.6);
+    background-color: none;
+}
+
+#company_name {
+    font-family: "Oswald";
+    margin-left: 10px;
+    font-weight: 400;
+    font-size: 3em;
+    text-align: left;
+    color: ghostwhite;
+    margin-top: -5px;
+}
+
+
+
+.page {
+    display:grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 3em 100vh;
+    grid-template-areas:
+            "header header"
+            "postits events";
+    /*background: linear-gradient(to top, #114357, #f29492);*/
+}
+
+.add_note_buttons {
+    opacity: 0.5;
+    height: 3em;
+    right: 8px;
+    bottom: 1%;
+    z-index: 2;
+    position:absolute;
+}
+
+.add_note_buttons:hover {
+    opacity: 1;
+}
+
+
+.add_event_button {
+    opacity: 0.5;
+    height: 3em;
+    right: 8px;
+    bottom: 6%;
+    z-index: 2;
+    position:absolute;
+}
+
+.add_event_button:hover {
+    opacity: 1;
+    height: 3em;
+    right: 8px;
+    bottom: 6%;
+    z-index: 2;
+    position:absolute;
+}
+
+.sticky {
+    background-color: whitesmoke;
+    position: absolute;
+
+    font-family: "Oswald";
+    min-height: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    max-width: 250px;
+    border-radius: 5px;
+    opacity: 0.6;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+}
+
+.sticky:hover{
+    background-color: whitesmoke;
+    position: absolute;
+    font-family: "Oswald";
+    min-height: 270px;
+    min-width: 270px;
+    max-height: 270px;
+    max-width: 270px;
+    border-radius: 5px;
+    opacity: 1;
+    z-index: 2;
+    margin-top: -10px;
+    margin-left: -10px;
+
+}
+
+
+.postits {
+    grid-area: postits;
+    position: relative;
+    /*background: whitesmoke;*/
+    opacity: 1;
+    margin-top: 10px;
+    margin-bottom: 80px;
+    border-right: 1px whitesmoke solid;
+}
+
+#postits {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 1px;
+}
+
+#postHeader {
+    font-family:  "Oswald";
+    border-bottom: 1px whitesmoke solid;
+    width: 500px;
+    font-weight: 300;
+    /*margin-left: 260px;
+    margin-right: 260px;*/
+    position: absolute;
+    margin-left: -250px;
+    left: 50%;
+    height: 50px;
+    font-size:2em;
+    color: whitesmoke;
+    text-align: center;
+}
+
+#eventHeader {
+    font-family:  "Oswald";
+    font-weight: 300;
+    margin-top: 10px;
+    height: 50px;
+    font-size:2em;
+    color: whitesmoke;
+    text-align: center;
+    border-bottom: 1px whitesmoke solid;
+    width: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+.events {
+    grid-area: events;
+    min-height: 100%;
+    width: 400px;
+    justify-self: stretch;
+    overflow: auto;
+}
+
+#newnote {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -175px;
+    margin-left: -150px;
+    width: 300px;
+    height: 350px;
+    text-align: center;
+}
+
+#new_event {
+    font-family: "Roboto Condensed";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -190px;
+    padding-left: 5px;
+    width: 400px;
+    height: 170px;
+    background-color: ghostwhite;
+    border-radius: 3px;
+}
+
+#event_name_box{
+    font-family: "Oswald";
+    margin-left: 4px;
+    margin-top: 4px;
+    border-radius: 4px;
+}
+
+#location_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 25px;
+    border-radius:4px;
+}
+
+#date_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 51px;
+    border-radius:4px;
+}
+
+#time_from_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 47px;
+    border-radius:4px;
+}
+
+#time_to_box{
+    font-family: "Oswald";
+    margin-top: 4px;
+    margin-left: 60px;
+    border-radius:4px;
+}
+
+#typesticky {
+    position: relative;
+    left: 50%;
+    margin-left: -125px;
+    margin-top: 20px;
+
+}
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 10; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.sticky_text {
+    margin: 10px 10px 10px 10px;
+    min-height: 230px;
+    min-width: 230px;
+    max-height: 230px;
+    max-width: 230px;
+    display: inline-block;
+    text-align: center;
+}
+
+#post_button {
+    font-family:  "Oswald";
+    font-weight: 400;
+
+    height: 30px;
+    width: 70px;
+    border-radius: 4px;
+
+    margin-top: 20px;
+
+}
+
+#submit_button{
+    font-size: 14px;
+    font-family: "Roboto Condensed";
+
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: black;
+    outline:none !important;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    border: 0;
+    opacity: 0.6;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    opacity: 0.8;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.event_card {
+    width: 380px;
+    height: 150px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    background-color: ghostwhite;
+    Opacity: 0.8;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+.event_card:hover {
+    Opacity: 1;
+
+    /*Glow*/
+    -webkit-box-shadow: 0px 0px 20px #f29492;
+    -moz-box-shadow: 0px 0px 20px #f29492;
+    box-shadow: 0px 0px 20px #f29492;
+
+}
+
+.event_title {
+    display: inline-block;
+    margin-top: -3px;
+    margin-left: 5px;
+
+    font-family: "Oswald";
+    font-weight:300;
+    font-size: 1.5em;
+    color: black;
+
+    border-bottom: 1px solid ghostwhite;
+}
+
+.event_location {
+
+    font-family: "Oswald";
+    font-weight:300;
+    font-size: 1.2em;
+    color: black;
+
+    margin-top: -10px;
+    margin-left: 5px;
+}
+
+.event_date {
+    font-family: "Oswald";
+    font-weight:300;
+    color: black;
+    font-size: 1.2em;
+
+    margin-top: -10px;
+    margin-left: 5px;
+}
+
+.event_time {
+    font-family: "Oswald";
+    font-weight:300;
+    color: black;
+    font-size: 1.2em;
+
+    margin-top: -10px;
+    margin-left: 5px;
+}
+
+

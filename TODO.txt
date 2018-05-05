@@ -1,0 +1,11 @@
+-fix sticky note positioning (goes off screen but is fixed when hovered over?)
+-prevent sticky notes from overlapping
+-create new static html divs for posted post its, overlay post it and event cards
+-a page where the user can choose which workspace they want to go into and a button that leads to that page
+-write a post request that http posts sticky notes and events to the server
+-write get requests that get the sticky notes and events and put them on the screen
+
+admin page:
+-have button for admin page that only shows up if the logged in user is an admin
+-have a table of notes/events and users who posted them so admins can delete them if they want
+-have another table of flagged notes/events so admins can also review those

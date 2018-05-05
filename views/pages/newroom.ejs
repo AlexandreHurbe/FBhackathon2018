@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Workspace</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/newroomBox.css"/>
+    <script type="text/javascript" src="/js/newroom.js"></script>
+</head>
+
+<body>
+
+<!-- Logo -->
+<h1 id="company_name">HAPPY VIBES CO.</h1>
+
+
+<p id="error_message"></p>
+
+<!-- Input Box -->
+
+<div id="workspace_frame">
+
+
+    <form method="post" action="login.js">
+
+        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="officeID" class="text_field" placeholder="Enter a workspace ID (no spaces)"/></p>
+        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="workspacename" class="text_field" placeholder="Enter a workspace name"/></p>
+    </form>
+
+
+
+        <div id="buttons_to_hide" class="login_control">
+            <input type="button" id="btn_login" value="Existing user" onclick="complete_existing_user()"/>
+            <input style="margin-left: 15px" type="button" id="btn_login" value="Create new account" onclick="complete_new_user()"/>
+        </div>
+</div>
+<div id="create_account_frame">
+
+
+    <form method="post" action="login.js">
+        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="firstname" class="text_field" placeholder="First Name"/></p>
+        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="lastname" class="text_field" placeholder="Last Name"/></p>
+        <p><img class="login_icons" id = "email_icon" src = "/img/email.png"><input type="text" id="email" class="text_field" placeholder="Email"/></p>
+        <p><img class="login_icons" src = "/img/lockIcon.svg"><input type="text" id="password" class="text_field" placeholder="Password"/></p>
+        <p><img class="login_icons" src = "/img/lockIcon.svg"><input type="text" id="con_password" class="text_field" placeholder="Re-type Password"/></p>
+    </form>
+
+
+
+    <div class="login_control">
+        <input type="button" id="btn_login" value="Submit" onclick="new_user_submit()"/>
+
+    </div>
+</div>
+
+<div id="existing_account_frame">
+
+
+    <form method="post" action="login.js">
+        <p><img class="login_icons" src = "/img/profileImg.png"><input type="text" id="username" class="text_field" placeholder = "Email"/></p>
+        <p><img class="login_icons" src = "/img/lockIcon.svg"><input type="password" id="password1" class="text_field" placeholder= "Password"/></p>
+    </form>
+
+
+
+    <div class="login_control">
+        <input type="button" id="btn_login" value="Submit" onclick="existing_user_submit()"/>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

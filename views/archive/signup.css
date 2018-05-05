@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500|Roboto+Condensed:300,400,700');
+
+html{
+    height: 100%
+
+}
+
+body {
+    background: linear-gradient(2deg, #355c7d, #6c5b7b, #c06c84, #3e5151, #2c3e50);
+    background-size: 1000% 1000%;
+
+
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 20s ease infinite;
+    -o-animation: AnimationName 20s ease infinite;
+    animation: AnimationName 20s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+
+#company_name{
+    font-family: Oswald;
+    font-weight: 400;
+    font-size: 6em;
+    text-align: center;
+    color: ghostwhite;
+    margin-top: 100px;
+    Opacity: 0.7;
+}
+
+#login_frame {
+    width: 400px;
+    height: 140px;
+    padding: 13px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -30px;
+    margin-left: -220px;
+
+    background-color: rgba(218, 226, 237, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+.label_input {
+    font-size: 14px;
+    font-family: "Roboto Condensed";
+
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: white;
+    background-color: rgba(68, 79, 71, 0.6);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.text_field {
+    width: 360px;
+    height: 50px;
+    margin-top: -40px;
+    margin-left: 40px;
+    border-radius: 4px;
+    border: 0;
+    outline:none !important;
+    background: transparent !important;
+}
+
+
+.login_icons{
+    float:left;
+    margin-top: -12px;
+    height: 20px;
+    width: 20px;
+}
+
+#btn_login {
+    font-size: 14px;
+    font-family: "Roboto Condensed";
+
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: black;
+    outline:none !important;
+    background-color: whitesmoke;
+    border-radius: 6px;
+    border: 0;
+    opacity: 0.6;
+}
+
+#signup {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    float: center;
+    top: 3px;
+
+}
+
+#signup:hover {
+    color: rgba(68, 79, 71, 0.6);
+    text-decoration: underline;
+}
+
+#email_icon{
+    height: 16px;
+
+}
+
+#recall {
+    display: block;
+    font-family: "Roboto Condensed";
+    font-size: 12px;
+    color: white;
+    margin-left: 8px;
+    text-decoration: none;
+    margin-top: 2px;
+}
+
+
+#recall:hover {
+    color: rgba(68, 79, 71, 0.6);
+    text-decoration: underline;
+}
+
+#login_control {
+    padding: 0 28px;
+}

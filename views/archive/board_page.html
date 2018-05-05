@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="board_page.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="board_page.js"></script>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large"
+            onclick="w3_close()">Close &times;</button>
+    <a href="#" class="w3-bar-item w3-button">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button">Link 3</a>
+</div>
+
+<!-- Page Content -->
+<div class="page" id = "main">
+
+    <div id="header">
+        <button id="openNav" style="float:left" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <h1 id = "company_name">HAPPY VIBES CO.</h1>
+    </div>
+
+
+
+
+    <!-- NOTE MESSAGE BOARD -->
+    <div id="postits_parent" class="postits">
+            <div id="postHeader">
+                OFFICE MESSAGE BOARD
+            </div>
+            <img class="add_note_buttons" src="plusButton.png" onclick="open_new_note_overlay()">
+    <div id="postits">
+        <!-- This is the div where post are generated -->
+    </div>
+    </div>
+
+    <!-- EVENT BOARD -->
+    <div id="events" class="events">
+        <div id="eventHeader">
+            UPCOMING EVENTS
+        </div>
+        <img class="add_event_button" src="addNoteButton.png" onclick="open_new_event_overlay()">
+    </div>
+</div>
+
+<!-- NOTE SUBMIT OVERLAY -->
+<div id="note_submit_overlay" class="overlay">
+    <div id="newnote">
+        <div class="sticky" id="typesticky">
+            <div id="sticky_submit_text" class="sticky_text" class="editable" contenteditable="true">
+            </div>
+            <!-- Anonymous <input type="checkbox"> <br> -->
+            <button type="button" id ="post_button" onclick="create_postit()">POST IT!</button>
+        </div>
+    </div>
+</div>
+
+<!-- Event SUBMIT OVERLAY -->
+<div id="event_submit_overlay" class="overlay">
+    <div id="new_event">
+        <div>Event Name: <input id="event_name_box" type="text"><br>
+             Location: <input id="location_box" type="text"><br>
+             Date: <input id="date_box" type="date"><br>
+             From: <input id="time_from_box" type="time"><br>
+             Till: <input id="time_to_box" type="time">
+        </div>
+        <button type="button" id = "submit_button" onclick="create_event()">Submit</button>
+    </div>
+</div>
+</body>
+</html>

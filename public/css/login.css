@@ -1,0 +1,91 @@
+/*entry pages background*/
+
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,500|Roboto+Condensed:300,400,700');
+
+ejs,html{
+    height: 100%
+
+}
+
+body {
+    background: linear-gradient(2deg, #355c7d, #6c5b7b, #c06c84, #3e5151, #2c3e50);
+    background-size: 1000% 1000%;
+    animation: fadein 2s, GradientChange 60s infinite ;
+    -moz-animation: fadein 2s, GradientChange 60s infinite; /* Firefox */
+    -webkit-animation: fadein 2s, GradientChange 60s infinite; /* Safari and Chrome */
+    -o-animation: fadein 2s, GradientChange 60s infinite; /* Opera */
+}
+
+@-webkit-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-moz-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@-o-keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+@keyframes GradientChange {
+    0%{background-position:64% 0%}
+    50%{background-position:37% 100%}
+    100%{background-position:64% 0%}
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+#company_name{
+    font-family: Oswald;
+    font-weight: 400;
+    font-size: 6em;
+    text-align: center;
+    color: ghostwhite;
+    top: 15%;
+    left: 50%;
+    margin-top: 0px;
+    margin-left: -303px;
+    Opacity: 0.7;
+    position: absolute;
+}
+
+
+
+

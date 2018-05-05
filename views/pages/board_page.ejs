@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+
+
+    <% include ../partials/board_page %>
+</head>
+<body>
+
+<!-- Sidebar -->
+
+<% include ../partials/sidebar %>
+
+
+<!-- Page Content -->
+<div class="page" id = "main">
+    <div id="header">
+        <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <div >
+            <h1 id = "company_name"><%= workspace_name%></h1>
+        </div>
+    </div>
+
+    <!-- NOTE MESSAGE BOARD -->
+    <div id="postits_parent" class="postits">
+
+        <div id="postHeader">
+            OFFICE MESSAGE BOARD
+        </div>
+        <img class="add_note_buttons" src="/img/plusButton.png" onclick="open_new_note_overlay()">
+        <div id="postits">
+            <!-- This is the div where post are generated -->
+        </div>
+
+    </div>
+
+    <!-- EVENT BOARD -->
+    <div id="events" class="events">
+        <div id="eventHeader">
+            UPCOMING EVENTS
+        </div>
+
+        <img  class="add_event_button" src="/img/addNoteButton.png" onclick="open_new_event_overlay()">
+    </div>
+</div>
+
+<!-- NOTE SUBMIT OVERLAY -->
+<div id="note_submit_overlay" class="overlay">
+    <div id="newnote">
+        <div class="sticky" id="typesticky">
+            <div id="sticky_submit_text" class="sticky_text" class="editable" contenteditable="true">
+            </div>
+            <!-- Anonymous <input type="checkbox"> <br> -->
+            <button type="button" id="post_button" onclick="create_postit()">Post It!</button>
+
+        </div>
+    </div>
+</div>
+
+<!-- Event SUBMIT OVERLAY -->
+<div id="event_submit_overlay" class="overlay">
+    <div id="new_event">
+           <div><img class="login_icons" src = "/img/eventName.png"><input class ="text_field" id = "event_name_box" type="text" placeholder = "Event Name"><br>
+               <img class="login_icons" src = "/img/pinDrop.png"><input class ="text_field" id = "location_box" type="text" placeholder = "Location"><br>
+               <img class="login_icons" src = "/img/eventDate.svg"><input class ="text_field" id = "date_box" type="date" placeholder = "Date"><br>
+               <img class="login_icons" src = "/img/startHour.png"><input class ="text_field" id = "time_from_box" type="time" placeholder = "Event Start Time"><br>
+               <img class="login_icons" src = "/img/endHour.png"><input class ="text_field" id = "time_to_box" type="time" placeholder = "Event End Time"></div>
+        <button type="button" id = "btn_login" onclick="create_event()">Submit</button>
+    </div>
+</div>
+
+<!--
+<script>
+
+    let currentDroppable = null;
+
+    .sticky.onmousedown = function (event) {
+
+        let shiftX = event.clientX - .sticky.getBoundingClientRect().left;
+        let shiftY = event.clientY - .sticky.getBoundingClientRect().top;
+
+        .sticky.style.position = "absolute";
+        .sticky.style.zIndex = 1000;
+        document.body.append(.sticky);
+
+        moveAt(event.pageX, event.pageY);
+
+        function moveAt(pageX, pageY){
+            .sticky.style.left = pageX - shiftX / 2 + "px";
+            .sticky.style.top = pageY - shiftY / 2 + "px";
+        };
+
+        function onMouseMove(event){
+            moveAt(event.pageX, event.pageY);
+            .sticky.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            .sticky.hidden = false;
+
+            if(!elemBelow){
+                return;
+            }
+            let droppableBelow = elemBelow.closest(".droppable");
+
+            if(currentDroppable != droppableBelow){
+                if (currentDroppable){
+                    leaveDroppable(currentDroppable);
+                }
+                currentDroppable = droppableBelow;
+                if (currentDroppable){
+                    enterDroppable(currentDroppable);
+                }
+            }
+        }
+
+        document.addEventListener("mousemove", onMouseMove);
+
+        .sticky.onmouseup = function(){
+            document.removeEventListener("mousemove", onMouseMove);
+            .sticky.onmouseup = null;
+        };
+
+        .sticky.ondragstart = function(){
+            return false;
+        };
+    };
+</script>
+-->
+
+
+</body>
+</html>
