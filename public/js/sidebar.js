@@ -7,6 +7,7 @@ function toggleDp() {
     document.getElementById("line-icon").classList.add("rolling");
   }
   document.getElementById("Dropdown").classList.toggle("show");
+  document.getElementById("true").style.display = 'block';
 
   /*
   if (document.getElementById("line-icon").classList.contains("rolling")){
