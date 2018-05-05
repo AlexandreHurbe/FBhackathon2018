@@ -28,7 +28,7 @@ function login() {
                 if (XHR.responseText.charAt(0) == "0") {
                     document.getElementById("error_message").appendChild(document.createTextNode(XHR.responseText.substring(1)));
                 } else {
-                    window.location.href="/board_page";
+                    window.location.href="/welcome";
                 }
 
             }

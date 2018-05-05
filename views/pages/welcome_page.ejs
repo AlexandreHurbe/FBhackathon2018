@@ -6,16 +6,38 @@
     <% include ../partials/welcome_page %>
 </head>
 <body>
+
+
+
 <div class = "page" id = "main">
     <div class = "header">
         <div id = "company_name">
             HAPPY VIBES CO.
         </div>
     </div>
-    <div class = "motivational_message">
-        HOPE YOU HAVE A GREAT DAY AT THE OFFICE BOB!
+    <div id = "motivational_message">
+        HOPE YOU HAVE A GREAT DAY AT THE OFFICE <%=firstname%>!
     </div>
+    <div id="login_control">
+        <input type="button" id="btn_login" value="Continue" onclick="login();"/>
     </div>
+    <div id = "workplace_overlay">
+        Which workplace will you be with today?
+        <div id = "workplace_options">
+            <!-- This is where workspace options are created -->
+        </div>
+    </div>
+
 </div>
+
+
+
 </body>
+<% var num_workspace = workspaces.length%>
+<script>
+    if (num_workspace > 1){
+        open_workspace_overlay();
+    };
+
+</script>
 </html>

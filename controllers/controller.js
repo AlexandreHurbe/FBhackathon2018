@@ -4,6 +4,7 @@ const workspace_db = mongoose.model('workspaces');
 const workspace_users_db = mongoose.model('workspace_users');
 const sessions_db = mongoose.model('sessions');
 const post_its_db = mongoose.model('post_its');
+const events_db = mongoose.model('events');
 
 module.exports.login = function(req, res){
     if (req.cookies.sessionID != undefined) {
@@ -20,6 +21,32 @@ module.exports.login = function(req, res){
             signup_link: "/signup", newroom_link: "/newroom"});
     }
 };
+
+module.exports.admin_page = function(req, res) {
+    var is_admin = "false";
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                workspace_users_db.find({"userID":sessions_found[0].userID}, function(err, workspaceID_found) {
+                    if(workspaceID_found[0].user_role == "admin"){
+                        is_admin = "true";
+                    }
+                    workspace_db.find({"_id":workspaceID_found[0].workspaceID}, function(err, workspace_found) {
+                        res.render('./pages/admin_page', { my_account: "/my_account",
+                            log_out_link: "/",
+                            workspace_name: workspace_found[0].workspace_name.toUpperCase(),
+                            isAdmin:is_admin});
+                    });
+                });
+            } else {
+                res.redirect('/');
+            }
+        });
+    } else {
+        res.redirect('/');
+    }
+};
+
 
 module.exports.account_page = function(req, res) {
     var is_admin = "true";
@@ -121,6 +148,45 @@ module.exports.submit_post_it = function(req, res) {
     });
 };
 
+module.exports.get_events = function(req, res) {
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        if (sessions_found.length) {
+            events_db.find({"workspaceID":req.cookies.workspaceID}, function(err, events_found) {
+                res.send(events_found);
+            });
+        }
+    });
+};
+
+module.exports.submit_event = function(req, res) {
+
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+
+        if (sessions_found.length) {
+            var event =  events_db({
+                "workspaceID":req.cookies.workspaceID,
+                "userID":sessions_found[0].userID,
+                "eventName": req.body.eventName,
+                "location": req.body.location,
+                "date": req.body.date,
+                "startTime": req.body.startTime,
+                "endTime": req.body.endTime
+            });
+
+            event.save(function (err, new_event) {
+                if (!err) {
+                    res.send("1" + new_event._id);
+                } else {
+                    res.send("0Error: Database error");
+                }
+            });
+
+        } else {
+            res.send("0Error: Database error");
+        }
+    });
+};
+
 module.exports.submit_workspace = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
@@ -163,7 +229,7 @@ module.exports.log_in = function(req, res) {
                 session.save(function (err, new_session) {
                     workspace_users_db.find({"userID":user_found[0]._id}, function(err, workspaceID_found) {
                         console.log(workspaceID_found);
-                        res.cookie('workspaceID',workspaceID_found[0]._id);
+                        res.cookie('workspaceID', workspaceID_found[0].workspaceID);
                         res.cookie('sessionID', new_session._id).send("1" + user_found[0]._id);
                     });
                 });
@@ -246,6 +312,7 @@ module.exports.logout = function(req, res) {
     sessions_db.remove({"_id":req.cookies.sessionID}, function(err) {
         if (!err) {
             res.clearCookie("sessionID");
+            res.clearCookie("workspaceID")
             res.redirect("/");
         }
     });
@@ -263,5 +330,23 @@ module.exports.sayGoodbye = function(req, res) {
 
 
 module.exports.welcome = function(req, res) {
-    res.render('./pages/welcome_page', { link: "/"});
+    if (req.cookies.sessionID != undefined) {
+        sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+            if (sessions_found.length) {
+                users_db.find({"_id":sessions_found[0].userID}, function(err, users_found) {
+                    workspace_users_db.find({"userID":users_found[0]._id}, function(err, workspaces_found) {
+                        if (workspaces_found.length > 1){
+                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toUpperCase(), workspaces:workspaces_found});
+                        }
+                        else{
+                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toLowerCase(), workspaces:workspaces_found});
+                        }
+                    });
+                });
+            }
+        });
+    } else {
+        res.render('./pages/login', { forget_pwd_link: "/forget_pwd",
+            signup_link: "/signup", newroom_link: "/newroom"});
+    }
 };
