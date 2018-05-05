@@ -335,12 +335,7 @@ module.exports.welcome = function(req, res) {
             if (sessions_found.length) {
                 users_db.find({"_id":sessions_found[0].userID}, function(err, users_found) {
                     workspace_users_db.find({"userID":users_found[0]._id}, function(err, workspaces_found) {
-                        if (workspaces_found.length > 1){
-                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toUpperCase(), workspaces:workspaces_found});
-                        }
-                        else{
-                            res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toLowerCase(), workspaces:workspaces_found});
-                        }
+                        res.render('./pages/welcome_page', {firstname:users_found[0].firstname.toUpperCase(), workspaces:workspaces_found});
                     });
                 });
             }
