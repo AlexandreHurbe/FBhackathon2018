@@ -163,7 +163,7 @@ module.exports.log_in = function(req, res) {
                 session.save(function (err, new_session) {
                     workspace_users_db.find({"userID":user_found[0]._id}, function(err, workspaceID_found) {
                         console.log(workspaceID_found);
-                        res.cookie('workspaceID',workspaceID_found[0]._id);
+                        res.cookie('workspaceID', workspaceID_found[0].workspaceID);
                         res.cookie('sessionID', new_session._id).send("1" + user_found[0]._id);
                     });
                 });
@@ -246,6 +246,7 @@ module.exports.logout = function(req, res) {
     sessions_db.remove({"_id":req.cookies.sessionID}, function(err) {
         if (!err) {
             res.clearCookie("sessionID");
+            res.clearCookie("workspaceID")
             res.redirect("/");
         }
     });
