@@ -117,8 +117,6 @@ function generate_postit(postit_text) {
     postitsdiv.appendChild(hide_button);
     var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
-    console.log(ran_height, ran_height+'px');
-    console.log(ran_width, ran_width+'px');
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
@@ -139,28 +137,9 @@ function create_postit() {
     XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XHR.send(url_encoded_data);
 
-    /*
-    XHR.onreadystatechange = function() {
-        if (XHR.readyState == XMLHttpRequest.DONE) {
-
-        }
-    }*/
-
     exit_note_submit();
-
 }
 
-/*
-<!-- enlarge posts when hover -->
-
-
-/**
- * $(".posted_sticky").hover(function() {
-    $(".hide_posts_button").show();
-    },function () {
-    $(".hide_posts_button").hide();
-});
- */
 
 
 
