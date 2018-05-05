@@ -123,18 +123,19 @@ function get_postits() {
     XHR.onreadystatechange = function() {
         if (XHR.readyState == XMLHttpRequest.DONE) {
             var post_its = JSON.parse(XHR.responseText);
+            post_its.reverse();
             console.log(post_its);
             for (var i in post_its) {
-                generate_postit(post_its[i].postItContent);
+                if (!document.getElementById(post_its[i]._id)) {
+                    generate_postit(post_its[i].postItContent, post_its[i]._id);
+                }
+
             }
         }
     }
 }
 
-var post_count = 0;
-
-function generate_postit(postit_text) {
-    post_count++;
+function generate_postit(postit_text, postit_id) {
     var text = postit_text
 
 
@@ -144,7 +145,7 @@ function generate_postit(postit_text) {
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
     sticky.className = "posted_sticky";
-    sticky.id = "posted_sticky" + post_count;
+    sticky.id = postit_id;
     var p = document.createElement("P");
     p.appendChild(document.createTextNode(text));
     sticky_text = document.createElement("DIV");
@@ -159,8 +160,6 @@ function generate_postit(postit_text) {
     postitsdiv.appendChild(hide_button);
     var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
-    console.log(ran_height, ran_height+'px');
-    console.log(ran_width, ran_width+'px');
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
@@ -183,20 +182,8 @@ function create_postit() {
 
 
     exit_note_submit();
-
 }
 
-/*
-<!-- enlarge posts when hover -->
-
-
-/**
- * $(".posted_sticky").hover(function() {
-    $(".hide_posts_button").show();
-    },function () {
-    $(".hide_posts_button").hide();
-});
- */
 
 
 
@@ -214,6 +201,11 @@ function w3_close() {
     document.getElementById("openNav").style.display = "inline-block";
 }
 
-get_postits();
+
 get_events();
+
+window.setInterval(function(){
+    get_postits();
+}, 1000);
+
 
