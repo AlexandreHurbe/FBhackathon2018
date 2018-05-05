@@ -134,7 +134,6 @@ function get_postits() {
                     console.log("this should shut up");
                     console.log(posts_on_page);
                     console.log(posts_on_page.indexOf(post_its[i]));
-                    debugger;
                     var result = generate_postit(post_its[i].postItContent, post_its[i]._id);
                     if (!result) {
 
@@ -160,11 +159,7 @@ function get_postits() {
 var coordinates = []
 
 function generate_postit(postit_text, postit_id) {
-
-
-    var text = postit_text
-
-
+    var text = postit_text;
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
 

@@ -107,14 +107,39 @@ html, body{
 }
 
 #workplace_overlay {
+    font-family: "Roboto Condensed";
+    font-size: 700%;
+    text-align: center;
+    color: ghostwhite;
     position: fixed; /* Sit on top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
+    padding-top: 4%;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 10; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+#workplace_options{
+    display: flex:
+    align-items: space-between;
+}
+#option-one {
+    display: inline-flex;
+    height: 290px;
+    width: 290px;
+    background-color: white;
+    margin: 20px;
+}
+
+#option-two{
+    display: inline-flex;
+    height: 290px;
+    width: 290px;
+    margin: 20px;
+    background-color: white;
 }
