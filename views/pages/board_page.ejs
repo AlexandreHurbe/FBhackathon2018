@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Happy Vibe</title>
 
 
     <% include ../partials/board_page %>
@@ -10,14 +10,14 @@
 
 <!-- Sidebar -->
 
-<% include ../partials/sidebar %>
+
 
 
 <!-- Page Content -->
 <div class="page" id = "main">
     <div id="header">
-        <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
         <div >
+            <% include ../partials/sidebar %>
             <h1 id = "company_name"><%= workspace_name%></h1>
         </div>
     </div>

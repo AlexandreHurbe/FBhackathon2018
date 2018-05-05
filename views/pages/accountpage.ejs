@@ -11,31 +11,33 @@
 <% include ../partials/sidebar %>
 
 
-<div class = "page" id = "main">
-    <div class = "header">
-        <div id = "account_name">
-            <button style="float: left" id="openNav" class="w3-button w3-xlarge" onclick="w3_open()">&#9776;</button>
+<article class = "page" id = "main">
+    <nav class = "header">
+        <figure id = "account_name">
             My Account
-        </div>
-    </div>
+        </figure>
+    </nav>
 
-    <div class = "wrapper">
-        <div class = "account_photo">
+
+    <section>
+        <figure class = "account_photo">
             <img id = "profile_picture" src = "/img/profileImg.png">
+        </figure>
+        <div class="wrapper">
+          <figure class = "personal_detail">
+              Fill up your personal details so people can get to know you!
+          </figure>
+        <div class="status">
+          <figure class = "total_likes">
+              Total <img src="/img/thumbsUp.png" alt="thumb up image" id="thumbs_up">:
+          </figure>
+          <figure class = "total_posts">
+              Total Posts:
+          </figure>
         </div>
-        <div class = "personal_details">
-            Fill up your personal details so people can get to know you!
         </div>
-        <div class = "total_likes">
-            Total Likes:
-        </div>
-        <div class = "total_posts">
-            Total Posts:
-        </div>
-
-    </div>
-
-</div>
+    </section>
+</article>
 
 
 </body>

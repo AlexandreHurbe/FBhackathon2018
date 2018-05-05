@@ -113,6 +113,9 @@ function get_events() {
     }
 }
 
+var board_full = false;
+var posts_on_page = [];
+
 function get_postits() {
     var XHR = new XMLHttpRequest();
 
@@ -125,22 +128,52 @@ function get_postits() {
             var post_its = JSON.parse(XHR.responseText);
             post_its.reverse();
             console.log(post_its);
+            var broke = false;
             for (var i in post_its) {
-                if (!document.getElementById(post_its[i]._id)) {
-                    generate_postit(post_its[i].postItContent, post_its[i]._id);
+                if (posts_on_page.indexOf(post_its[i]._id) == -1) {
+                    console.log("this should shut up");
+                    console.log(posts_on_page);
+                    console.log(posts_on_page.indexOf(post_its[i]));
+                    debugger;
+                    var result = generate_postit(post_its[i].postItContent, post_its[i]._id);
+                    if (!result) {
+
+                        broke = true;
+                        break;
+                    }
+                }
+            }
+
+            if (broke) {
+                for (var i in post_its) {
+                    if (posts_on_page.indexOf(post_its[i]._id) == -1) {
+                        posts_on_page.push(post_its[i]._id);
+                    }
                 }
 
+                board_full = true;
             }
         }
     }
 }
 
+var coordinates = []
+
 function generate_postit(postit_text, postit_id) {
-    var text = postit_text;
+
+
+    var text = postit_text
 
 
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
+
+    if (board_full) {
+        postitsdiv.removeChild(postitsdiv.lastChild);
+        const index = coordinates.indexOf([postitsdiv.lastChild.style.top, postitsdiv.lastChild.style.left]);
+        coordinates.splice(index, 1);
+    }
+
     console.log(document.getElementById('postits').offsetHeight);
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
@@ -153,19 +186,60 @@ function generate_postit(postit_text, postit_id) {
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
     // create a hide button for hiding posts, shown when hover
-    hide_button = document.createElement("input");
-    hide_button.className = "hide_posts_button";
+    //hide_button = document.createElement("img");
+    //hide_button.className = "hide_posts_button";
     //hide_button.src = "/img/cross.png";
-    hide_button.value = "close";
-    hide_button.style.display = "none";
-    hide_button.style.position = "absolute";
+    //hide_button.style.display = "none";
+    //postitsdiv.appendChild(hide_button);
+    var ran_height = 0
+    var ran_width = 0
 
-    sticky.appendChild(hide_button);
-    var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
-    var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
+    var attempts = 0
+    placed = false;
+    while (!placed) {
+        console.log("repeated");
+        ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
+        ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
+
+        var continue_loop = false;
+        for (var i in coordinates) {
+            console.log(ran_height, ran_width);
+            console.log(coordinates[i][0], coordinates[i][1]);
+            if ((ran_width+250) >= coordinates[i][1] && (coordinates[i][1]+250) >= ran_width &&
+                (ran_height+250) >= coordinates[i][0] && (coordinates[i][0]+250) >= ran_height) {
+                console.log("test");
+                continue_loop = true;
+                break;
+            }
+        }
+
+        if (continue_loop) {
+            console.log("test2");
+            attempts++;
+            console.log(attempts);
+
+            if (attempts > 200) {
+                break;
+            }
+
+            continue;
+        }
+
+        placed=true;
+
+    }
+
+    if (!placed) {
+        return false;
+    }
+
+    posts_on_page.push(postit_id);
+    coordinates.push([ran_height, ran_width]);
     sticky.style.top = ran_height+'px';
     sticky.style.left = ran_width+'px';
     postitsdiv.appendChild(sticky);
+
+    return true;
 }
 
 
