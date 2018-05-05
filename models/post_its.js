@@ -4,7 +4,8 @@ var post_its = mongoose.Schema(
         "workspaceID":String,
         "userID":String,
         "postItContent":String,
-        "anonymous":String
+        "anonymous":String,
+        "hide":String
     }
 );
 mongoose.model('post_its', post_its);

@@ -136,11 +136,11 @@ function get_postits() {
 }
 
 function generate_postit(postit_text, postit_id) {
-    var text = postit_text
+    var text = postit_text;
 
 
     var postitsdiv = document.getElementById('postits');
-    var postitsparent = document.getElementById('posits_parent')
+    var postitsparent = document.getElementById('posits_parent');
     console.log(document.getElementById('postits').offsetHeight);
     console.log(document.getElementById('postits_parent').offsetWidth);
     var sticky = document.createElement("DIV");
@@ -153,11 +153,14 @@ function generate_postit(postit_text, postit_id) {
     sticky_text.appendChild(p);
     sticky.appendChild(sticky_text);
     // create a hide button for hiding posts, shown when hover
-    hide_button = document.createElement("img");
+    hide_button = document.createElement("input");
     hide_button.className = "hide_posts_button";
-    hide_button.src = "/img/cross.png";
+    //hide_button.src = "/img/cross.png";
+    hide_button.value = "close";
     hide_button.style.display = "none";
-    postitsdiv.appendChild(hide_button);
+    hide_button.style.position = "absolute";
+
+    sticky.appendChild(hide_button);
     var ran_height = Math.floor(Math.random()*(postits_parent.offsetHeight-250)) + 1 + 50 ;
     var ran_width = Math.floor(Math.random()*(postitsdiv.offsetWidth-250)) + 1;
     sticky.style.top = ran_height+'px';
@@ -165,12 +168,19 @@ function generate_postit(postit_text, postit_id) {
     postitsdiv.appendChild(sticky);
 }
 
+
+
+
+
+
+
 function create_postit() {
     var data_pairs = [];
     var url_encoded_data = "";
 
     data_pairs.push(encodeURIComponent("post_it_content") + '=' + encodeURIComponent(document.getElementById("sticky_submit_text").innerText));
     data_pairs.push(encodeURIComponent("anonymous") + '=' + encodeURIComponent("no"));
+    data_pairs.push(encodeURIComponent("hide") + '=' + encodeURIComponent("false"));
 
     url_encoded_data = data_pairs.join('&').replace(/%20/g, '+');
 

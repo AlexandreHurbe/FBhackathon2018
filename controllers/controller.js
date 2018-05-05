@@ -131,7 +131,8 @@ module.exports.submit_post_it = function(req, res) {
                     "workspaceID":req.cookies.workspaceID,
                     "userID":sessions_found[0].userID,
                     "postItContent":req.body.post_it_content,
-                    "anonymous":req.body.anonymous
+                    "anonymous":req.body.anonymous,
+                    "hide": req.body.hide
                 });
 
                 post_it.save(function (err, new_post_it) {
