@@ -57,11 +57,25 @@
   animation-fill-mode: forwards;
 }
 
+.rollback{
+  animation: rollback 1s;
+  animation-fill-mode: forwards;
+}
+
 @keyframes roll {
   0% {
     transform: rotate(0);
   }
   100% {
     transform: rotate(90deg);
+  }
+}
+
+@keyframes rollback {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0);
   }
 }
