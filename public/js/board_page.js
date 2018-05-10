@@ -160,11 +160,7 @@ function get_postits() {
 var coordinates = []
 
 function generate_postit(postit_text, postit_id) {
-
-
-    var text = postit_text
-
-
+    var text = postit_text;
     var postitsdiv = document.getElementById('postits');
     var postitsparent = document.getElementById('posits_parent');
 
