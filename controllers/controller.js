@@ -117,13 +117,27 @@ module.exports.get_post_its = function(req, res) {
     });
 };
 
-module.exports.get_workspace_name = function(req, res) {
-    console.log(req.params);
-    workspace_db.find({"_id":req.params.workspaceID}, function(err, workspace_found) {
-        console.log(workspace_found);
-        res.send(workspace_found[0].workspace_name);
+module.exports.get_workspaces = function(req, res) {
+    console.log("test");
+    sessions_db.find({"_id":req.cookies.sessionID}, function(err, sessions_found) {
+        if (sessions_found.length) {
+            users_db.find({"_id":sessions_found[0].userID}, function(err, user_found) {
+                workspace_users_db.find({"userID":user_found[0]._id}, function(err, workspaces) {
+                    send_workspaces = [];
+                    for (i in workspaces) {
+                        workspace_db.find({"_id":workspaces[i].workspaceID}, function(err, workspace) {
+                            send_workspaces.push(workspace[0]);
+                        });
+                    }
+
+                    res.send(send_workspaces);
+                });
+            });
+
+        }
     });
-}
+};
+
 
 module.exports.get_user_name = function(req, res) {
     console.log(req.params);

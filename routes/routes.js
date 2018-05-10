@@ -40,7 +40,7 @@ router.get('/get_events', controller.get_events);
 
 router.get('/welcome', controller.welcome);
 
-router.get('/get_workspaces/:workspaceID', controller.get_workspace_name);
+router.get('/get_workspaces', controller.get_workspaces);
 
 router.get('/get_user_name/:userID', controller.get_user_name);
 
