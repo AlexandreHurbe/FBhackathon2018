@@ -42,4 +42,8 @@ router.get('/welcome', controller.welcome);
 
 router.get('/get_workspaces/:workspaceID', controller.get_workspace_name);
 
+router.get('/get_user_name/:userID', controller.get_user_name);
+
+router.post('/delete_post_it', controller.delete_post_it)
+
 module.exports = router;

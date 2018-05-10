@@ -125,6 +125,22 @@ module.exports.get_workspace_name = function(req, res) {
     });
 }
 
+module.exports.get_user_name = function(req, res) {
+    console.log(req.params);
+    users_db.find({"_id":req.params.userID}, function(err, user_found) {
+        res.send(user_found[0].firstname + ' ' + user_found[0].lastname);
+    });
+};
+
+
+module.exports.delete_post_it = function(req, res) {
+    post_its_db.remove({"_id":req.body.postitID}, function(err, obj) {});
+};
+
+module.exports.delete_event = function(req, res) {
+    events_db.remove({"_id":req.body.eventID}, function(err, obj) {});
+};
+
 module.exports.submit_post_it = function(req, res) {
     for (key in req.body) {
         if (req.body[key] == "") {
@@ -362,3 +378,4 @@ module.exports.welcome = function(req, res) {
             signup_link: "/signup", newroom_link: "/newroom"});
     }
 };
+

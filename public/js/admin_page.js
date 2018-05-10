@@ -21,6 +21,8 @@ function create_posts_table() {
                 innertable += '<tr>';
                 if (!document.getElementById(post_its[i]._id)) {
                     innertable += '<td>' + post_its[i].postItContent + '</td>';
+                    var XHR1 = new XMLHttpRequest();
+
                     innertable += '<td>' + post_its[i].userID.substring(0,4) + '</td>';
 
                 }
